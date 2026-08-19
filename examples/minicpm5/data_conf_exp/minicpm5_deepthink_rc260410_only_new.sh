@@ -1,0 +1,15 @@
+DATA_PATH="
+0.581485700 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260410/minicpm5_tokenizer/nvidia_nemotron_cascade_sft_stage-1_math_dsv32_rewrite
+0.155014484 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260410/minicpm5_tokenizer/OpenCodeReasoning_ds_260410
+0.014475399 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260410/minicpm5_tokenizer/humaneval_like_merge_dsv32_rewrite
+0.007739482 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260410/minicpm5_tokenizer/mbpp_like_merge_dsv32_rewrite
+0.014403549 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260410/minicpm5_tokenizer/math_500_train_and_evol_dsv32_rewrite
+0.044975227 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260410/minicpm5_tokenizer/bbh_like_dsv32_rewrite
+0.000315833 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260410/minicpm5_tokenizer/gsm8k_train_dsv32_rewrite
+0.021093236 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260410/minicpm5_tokenizer/mmlu_like_merge_dsv32_rewrite
+0.037074193 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260410/minicpm5_tokenizer/cmmlu_like_merge_dsv32_rewrite
+0.005312702 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260410/minicpm5_tokenizer/ceval_like_merge_dsv32_rewrite
+0.002347393 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260410/minicpm5_tokenizer/old_knowledge_merge_dsv32_rewrite_long
+0.061335751 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260410/minicpm5_tokenizer/old_knowledge_merge_dsv32_rewrite_short
+0.054427050 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260410/minicpm5_tokenizer/IF_old_merge_dsv32_rewrite
+"

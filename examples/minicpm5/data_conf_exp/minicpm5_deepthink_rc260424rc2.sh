@@ -1,0 +1,36 @@
+DATA_PATH="
+0.005726955 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260410/minicpm5_tokenizer/humaneval_like_merge_dsv32_rewrite
+0.003062000 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260410/minicpm5_tokenizer/mbpp_like_merge_dsv32_rewrite
+0.005698529 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260410/minicpm5_tokenizer/math_500_train_and_evol_dsv32_rewrite
+0.017793713 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260410/minicpm5_tokenizer/bbh_like_dsv32_rewrite
+0.000124954 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260410/minicpm5_tokenizer/gsm8k_train_dsv32_rewrite
+0.010431492 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260410/minicpm5_tokenizer/mmlu_like_merge_dsv32_rewrite
+0.018334748 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260410/minicpm5_tokenizer/cmmlu_like_merge_dsv32_rewrite
+0.002627355 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260410/minicpm5_tokenizer/ceval_like_merge_dsv32_rewrite
+0.000185742 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260410/minicpm5_tokenizer/old_knowledge_merge_dsv32_rewrite_long
+0.030333108 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260410/minicpm5_tokenizer/old_knowledge_merge_dsv32_rewrite_short
+0.021533172 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260410/minicpm5_tokenizer/IF_old_merge_dsv32_rewrite
+0.251636988 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260424/minicpm5_tokenizer/OpenMathReasoning_think_sync_clean_dsv32_rewrite_3x
+0.115022064 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260424/minicpm5_tokenizer/OpenMathInstruct2_think_sync_clean_dsv32_rewrite_1x
+0.053389998 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260424/minicpm5_tokenizer/MiroMind_think_sync_clean_dsv32_rewrite_1x
+0.177807701 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260424/minicpm5_tokenizer/OpenCodeReasoning_dsv32_rewrite_3x
+0.214112808 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260424/minicpm5_tokenizer/OpenCodeReasoning2_python_dsv32_rewrite_3x
+0.023723908 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260424/minicpm5_tokenizer/qwen_sft_code_all_think_dsv32_rewrite_1x
+0.001299288 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260424/minicpm5_tokenizer/mmlu_redux_like_260424
+0.005508003 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260424/minicpm5_tokenizer/BBEH_like_260424
+0.000646898 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260424/minicpm5_tokenizer/whoRU_260424
+0.000011089 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260424/minicpm5_tokenizer/three_body_qa_260424
+0.000000667 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260424/minicpm5_tokenizer/thu_data_260424
+0.006070559 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260424/minicpm5_tokenizer/selected_safe_qwen35_rewrite
+0.001693210 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260424/minicpm5_tokenizer/IFBench_like_260424
+0.003851183 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260424/minicpm5_tokenizer/ds300w_dsv32_rewrite
+0.002296523 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260424/minicpm5_tokenizer/chegg_260424
+0.000120517 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/sft_2.5_minicpm5_128k_data_pool_temp/gpqa_textbook/general/gpqa_textbook
+0.002820692 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/sft_2.5_minicpm5_128k_data_pool_temp/mmlu_knowledge_merge_v0v1v2/general/mmlu_knowledge_merge_v0v1v2
+0.002333225 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/sft_2.5_minicpm5_128k_data_pool_temp/chinese_knowledge_v1v2/general/chinese_knowledge_v1v2
+0.000036302 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/sft_2.5_minicpm5_128k_data_pool_temp/magpie_line_fim//general/magpie_line_fim
+0.000184761 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/sft_2.5_minicpm5_128k_data_pool_temp/magpie_suffix_diff_fim//general/magpie_suffix_diff_fim
+0.000218834 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/sft_2.5_minicpm5_128k_data_pool_temp/data_science_line_fim/general/data_science_line_fim
+0.001112245 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/sft_2.5_minicpm5_128k_data_pool_temp/data_science_suffix_diff_fim//general/data_science_suffix_diff_fim
+0.020250769 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260424/minicpm5_tokenizer/tau_function_call_sft_v13
+"

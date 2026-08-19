@@ -1,0 +1,20 @@
+DATA_PATH="
+0.550424537 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260410/minicpm5_tokenizer/nvidia_nemotron_cascade_sft_stage-1_math_dsv32_rewrite
+0.146734090 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260410/minicpm5_tokenizer/OpenCodeReasoning_ds_260410
+0.013702168 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260410/minicpm5_tokenizer/humaneval_like_merge_dsv32_rewrite
+0.007326063 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260410/minicpm5_tokenizer/mbpp_like_merge_dsv32_rewrite
+0.013634156 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260410/minicpm5_tokenizer/math_500_train_and_evol_dsv32_rewrite
+0.042572790 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260410/minicpm5_tokenizer/bbh_like_dsv32_rewrite
+0.000298962 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260410/minicpm5_tokenizer/gsm8k_train_dsv32_rewrite
+0.019966501 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260410/minicpm5_tokenizer/mmlu_like_merge_dsv32_rewrite
+0.035093805 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260410/minicpm5_tokenizer/cmmlu_like_merge_dsv32_rewrite
+0.005028914 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260410/minicpm5_tokenizer/ceval_like_merge_dsv32_rewrite
+0.002222003 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260410/minicpm5_tokenizer/old_knowledge_merge_dsv32_rewrite_long
+0.058059385 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260410/minicpm5_tokenizer/old_knowledge_merge_dsv32_rewrite_short
+0.051519726 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260410/minicpm5_tokenizer/IF_old_merge_dsv32_rewrite
+0.001754779 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260410/minicpm5_tokenizer/rl_hard.r1_0528.0603
+0.007826002 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260410/minicpm5_tokenizer/general_reasoner.r1_0528.0609
+0.009224770 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260410/minicpm5_tokenizer/nvidia_nemotron_cascade_sft_stage-1_code
+0.010910288 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260410/minicpm5_tokenizer/nvidia_nemotron_cascade_sft_stage-2_code
+0.023701061 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/exp_data/rc_260410/minicpm5_tokenizer/simia90k_toolmind_spider_bird
+"

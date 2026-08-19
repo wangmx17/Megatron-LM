@@ -1,0 +1,104 @@
+#!/bin/bash
+
+export CUDA_DEVICE_MAX_CONNECTIONS=1
+export PYTHONPATH=.:$PYTHONPATH
+
+GPUS_PER_NODE=1
+# Change for multinode config
+MASTER_ADDR=${MASTER_ADDR:-"localhost"}
+MASTER_PORT=${MASTER_PORT:-"6000"}
+NNODES=${WORLD_SIZE:-"1"}
+NODE_RANK=${RANK:-"0"}
+
+DISTRIBUTED_ARGS=(
+    --nproc_per_node $GPUS_PER_NODE 
+    --nnodes $NNODES
+    --node_rank $NODE_RANK
+    --master_addr $MASTER_ADDR 
+    --master_port $MASTER_PORT
+)
+
+MODEL_ARGS=(
+    --use-mcore-models
+    --vocab-size 130560
+    --make-vocab-size-divisible-by 1
+    --disable-bias-linear
+    --seq-length 4096
+    --max-position-embeddings 4096
+    --num-layers 24
+    --hidden-size 1536
+    --ffn-hidden-size 4608
+    --num-attention-heads 16
+    --group-query-attention
+    --num-query-groups 2
+    --kv-channels 128
+    --init-method-std 0.02
+    --attention-dropout 0.0
+    --hidden-dropout 0.0
+    --normalization RMSNorm
+    --position-embedding-type rope
+    --swiglu
+    --untie-embeddings-and-output-weights
+    --no-masked-softmax-fusion
+    --no-position-embedding
+    --rotary-base 10000
+    --norm-epsilon 1e-6
+)
+
+DATA_ARGS=(
+    --tokenizer-type HuggingFaceTokenizer
+    --tokenizer-model /user/yanhui/utils/tokenizer_v9.6/
+    --split 99990,8,2
+    --use-modelbest-sdk
+    --no-load-data-state
+    --dataloader-type external
+)
+
+TRAINING_ARGS=(
+    --micro-batch-size 1
+    --global-batch-size 1
+    --weight-decay 0.1
+    --adam-beta1 0.9
+    --adam-beta2 0.95
+    --clip-grad 1.0
+    --bf16
+    --lr 1e-2
+    --min-lr 0.000625
+    --train-iters 5000
+    --lr-warmup-iters 100
+    --lr-decay-style WSD
+    --lr-wsd-decay-style exponential
+    --lr-wsd-decay-iters 600
+    --lr-decay-iters 5000
+    --optimizer muon
+    --muon-split-qkv
+    --muon-coefficient-type quintic
+)
+
+MODEL_PARALLEL_ARGS=(
+    --recompute-granularity full
+    --recompute-method uniform
+    --recompute-num-layers 1
+    --use-distributed-optimizer
+    --tensor-model-parallel-size 1
+    --sequence-parallel
+)
+
+EVAL_AND_LOGGING_ARGS=(
+    --log-interval 1
+    --save-interval 1000
+    --eval-interval 1000000000
+    --eval-iters 100
+    --finetune
+    --async-save
+    --ckpt-format torch_dist
+)
+
+set -ex
+torchrun ${DISTRIBUTED_ARGS[@]} tools/checkpoint/dist_ckpt_to_hf_minicpm.py \
+    ${MODEL_ARGS[@]} \
+    ${DATA_ARGS[@]} \
+    ${TRAINING_ARGS[@]} \
+    ${MODEL_PARALLEL_ARGS[@]} \
+    ${EVAL_AND_LOGGING_ARGS[@]} \
+    $@

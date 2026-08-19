@@ -1,0 +1,1 @@
+DATA_PATH="1.0 /user/traindoc/text/by_minicpm3_tokenizer.74k_241216/fineweb_hqdata_v5"

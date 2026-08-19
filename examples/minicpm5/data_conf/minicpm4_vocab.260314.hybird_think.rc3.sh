@@ -1,0 +1,29 @@
+DATA_PATH="
+0.257826888 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/sft_2.5_minicpm4_xml_data_pool/think/omr.r1_0528.0602/fusion_think/omr.r1_0528.0602
+0.128913444 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/sft_2.5_minicpm4_xml_data_pool/think/omr.r1_0528.0606/fusion_think/omr.r1_0528.0606
+0.193370166 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/sft_2.5_minicpm4_xml_data_pool/think/omr.r1_0528.0609/fusion_think/omr.r1_0528.0609
+0.003867403 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/sft_2.5_minicpm4_xml_data_pool/think/math500.r1_0528.0609/fusion_think/math500.r1_0528.0609
+0.038674033 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/sft_2.5_minicpm4_xml_data_pool/think/ocr2.r1_0528.0601/fusion_think/ocr2.r1_0528.0601
+0.038674033 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/sft_2.5_minicpm4_xml_data_pool/think/ocr2.r1_0528.0606/fusion_think/ocr2.r1_0528.0606
+0.000000000 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/sft_2.5_minicpm4_xml_data_pool/think/rl_hard.r1_0528.0603/fusion_think/rl_hard.r1_0528.0603
+0.038674033 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/sft_2.5_minicpm4_xml_data_pool/think/general_reasoner.r1_0528.0609/fusion_think/general_reasoner.r1_0528.0609
+0.080000000 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/sft_2.5_minicpm4_xml_data_pool/think/nvidia_Nemotron-Math-v2.high/fusion_think/nvidia_Nemotron-Math-v2.high
+0.005314849 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/sft_2.5_minicpm4_xml_data_pool/think/nvidia_nemotron_cascade_sft_stage-1_code/fusion_think/nvidia_nemotron_cascade_sft_stage-1_code
+0.005314849 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/sft_2.5_minicpm4_xml_data_pool/think/nvidia_nemotron_cascade_sft_stage-2_code/fusion_think/nvidia_nemotron_cascade_sft_stage-2_code
+0.040000000 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/sft_2.5_minicpm4_xml_data_pool/think/DeepSeek-R1-300w/fusion_think/DeepSeek-R1-300w
+0.001021737 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/sft_2.5_minicpm4_xml_data_pool/think/align_no_sys_deepthink/fusion_think/align_no_sys_deepthink
+0.004294074 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/sft_2.5_minicpm4_xml_data_pool/think/bbh_qwen3_30B_gen_0shot_2x_deepthink/fusion_think/bbh_qwen3_30B_gen_0shot_2x_deepthink
+0.001326594 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/sft_2.5_minicpm4_xml_data_pool/think/ceval_merge_3_style_each_2x_dedup_deepthink/fusion_think/ceval_merge_3_style_each_2x_dedup_deepthink
+0.010282464 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/sft_2.5_minicpm4_xml_data_pool/think/cmmlu_merge_3_style_each_2x_dedup_deepthink/fusion_think/cmmlu_merge_3_style_each_2x_dedup_deepthink
+0.006039249 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/sft_2.5_minicpm4_xml_data_pool/think/gsm8k_qwen3_30B_gen_rm_emoji_1x_deepthink/fusion_think/gsm8k_qwen3_30B_gen_rm_emoji_1x_deepthink
+0.007281441 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/sft_2.5_minicpm4_xml_data_pool/think/humaneval_like_old_data_ut_pass_0shot_2x_deepthink/fusion_think/humaneval_like_old_data_ut_pass_0shot_2x_deepthink
+0.002180241 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/sft_2.5_minicpm4_xml_data_pool/think/ifeval_like_deepthink/fusion_think/ifeval_like_deepthink
+0.010078503 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/sft_2.5_minicpm4_xml_data_pool/think/math500_trainset_qwen3_32B_gen_1x_deepthink/fusion_think/math500_trainset_qwen3_32B_gen_1x_deepthink
+0.007424679 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/sft_2.5_minicpm4_xml_data_pool/think/mbpp_like_qa_250423_with_unit_test_pass_0shot_2x_deepthink/fusion_think/mbpp_like_qa_250423_with_unit_test_pass_0shot_2x_deepthink
+0.005584512 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/sft_2.5_minicpm4_xml_data_pool/think/mmlu_merge_2_style_each_3x_dedup_deepthink/fusion_think/mmlu_merge_2_style_each_3x_dedup_deepthink
+0.002841546 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/sft_2.5_minicpm4_xml_data_pool/think/qwen_sft_checked_code_deepthink/fusion_think/qwen_sft_checked_code_deepthink
+0.001644960 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/sft_2.5_minicpm4_xml_data_pool/think/qwen_sft_if_deepthink/fusion_think/qwen_sft_if_deepthink
+0.060000000 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/sft_2.5_minicpm4_xml_data_pool/think/simia90k_toolmind_spider_bird/fusion_think/simia90k_toolmind_spider_bird
+0.020000000 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/sft_2.5_minicpm4_xml_data_pool/think/whoru_deepthink/fusion_think/whoru_deepthink
+0.030000000 /user/zhangyixuan/share_user_data/user/zhangyixuan/data/sft_2.5_minicpm4_xml_data_pool/think/IF_new_deep_thinking/fusion_think/IF_new_deep_thinking
+"

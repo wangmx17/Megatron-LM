@@ -1,0 +1,240 @@
+diff --git a/megatron/core/transformer/moe/fused_a2a.py b/megatron/core/transformer/moe/fused_a2a.py
+index 60b0b11a3..3f2694c58 100644
+--- a/megatron/core/transformer/moe/fused_a2a.py
++++ b/megatron/core/transformer/moe/fused_a2a.py
+@@ -3,6 +3,7 @@
+ # Copyright (c) 2025 DeepSeek
+ # Licensed under the MIT License - https://github.com/deepseek-ai/DeepEP/blob/main/LICENSE
+
++import logging
+
+ try:
+     from deep_ep import Buffer
+@@ -14,6 +15,7 @@ except ImportError:
+
+ import torch
+
++logger = logging.getLogger(__name__)
+ _buffer = None
+
+
+@@ -273,6 +275,30 @@ except ImportError:
+
+ _hybrid_ep_buffer = None
+
++# Megatron Timers 实例，由 _HybridEPManager 在 dispatch/combine 前设置，timing-log-level=2 时参与计时与打印
++_hybridep_timers = None
++
++# Timer 名称，与 training.py 中 timers_to_log 一致
++HYBRIDEP_TIMER_DISPATCH_FWD = 'HybridEP_dispatch_fwd'
++HYBRIDEP_TIMER_COMBINE_FWD = 'HybridEP_combine_fwd'
++HYBRIDEP_TIMER_COMBINE_BWD = 'HybridEP_combine_bwd'
++HYBRIDEP_TIMER_DISPATCH_BWD = 'HybridEP_dispatch_bwd'
++
++
++def set_hybridep_timers(timers):
++    """由 token_dispatcher 的 _HybridEPManager 设置，使 HybridEP 耗时在 timing-log-level=2 下统计并支持 timing-log-option=all。"""
++    global _hybridep_timers
++    _hybridep_timers = timers
++
++
++def _hybridep_log_timing(name: str, start_ev: torch.cuda.Event, end_ev: torch.cuda.Event) -> None:
++    """每层直接打印 a2a 耗时（所有 rank 均打印，便于与 token number 对比）。"""
++    end_ev.record()
++    torch.cuda.current_stream().synchronize()
++    elapsed_ms = start_ev.elapsed_time(end_ev)
++    rank = torch.distributed.get_rank() if torch.distributed.is_initialized() else 0
++    logger.info("[HybridEP EP timing] rank %d %s: %.3f ms", rank, name, elapsed_ms)
++
+
+ def init_hybrid_ep_buffer(
+     group: torch.distributed.ProcessGroup,
+@@ -360,6 +386,11 @@ class HybridEPDispatch(torch.autograd.Function):
+         # we do not need to the D2H here.
+         use_host_meta = num_dispatched_tokens is None or num_permuted_tokens is None
+         # Process the dispatch
++        if _hybridep_timers is not None:
++            _hybridep_timers(HYBRIDEP_TIMER_DISPATCH_FWD, log_level=2).start()
++        _start = torch.cuda.Event(enable_timing=True)
++        _end = torch.cuda.Event(enable_timing=True)
++        _start.record()
+         (
+             dispatched_hidden,
+             dispatched_probs,
+@@ -377,6 +408,9 @@ class HybridEPDispatch(torch.autograd.Function):
+             num_permuted_tokens=num_permuted_tokens,
+             use_host_meta=use_host_meta,
+         )
++        _hybridep_log_timing("HybridEP_dispatch_fwd", _start, _end)
++        if _hybridep_timers is not None:
++            _hybridep_timers(HYBRIDEP_TIMER_DISPATCH_FWD, log_level=2).stop()
+
+         ctx.handle = handle
+         ctx.pad_multiple = pad_multiple
+@@ -395,6 +429,11 @@ class HybridEPDispatch(torch.autograd.Function):
+         Backward pass of fused dispatch of the HybridEP backend
+         '''
+         handle = ctx.handle
++        if _hybridep_timers is not None:
++            _hybridep_timers(HYBRIDEP_TIMER_COMBINE_BWD, log_level=2).start()
++        _start = torch.cuda.Event(enable_timing=True)
++        _end = torch.cuda.Event(enable_timing=True)
++        _start.record()
+         combined_hidden, combined_probs = _hybrid_ep_buffer.combine_with_unpermute(
+             hidden=grad_x,
+             probs=grad_probs,
+@@ -402,6 +441,9 @@ class HybridEPDispatch(torch.autograd.Function):
+             pad_multiple=ctx.pad_multiple,
+             num_dispatched_tokens=ctx.num_dispatched_tokens,
+         )
++        _hybridep_log_timing("HybridEP_combine_bwd", _start, _end)
++        if _hybridep_timers is not None:
++            _hybridep_timers(HYBRIDEP_TIMER_COMBINE_BWD, log_level=2).stop()
+         return combined_hidden, None, combined_probs, None, None, None, None, None, None, None
+
+
+@@ -417,12 +459,20 @@ class HybridEPCombine(torch.autograd.Function):
+         '''
+         Forward pass of fused combine of the HybridEP backend
+         '''
++        if _hybridep_timers is not None:
++            _hybridep_timers(HYBRIDEP_TIMER_COMBINE_FWD, log_level=2).start()
++        _start = torch.cuda.Event(enable_timing=True)
++        _end = torch.cuda.Event(enable_timing=True)
++        _start.record()
+         combined_hidden, _ = _hybrid_ep_buffer.combine_with_unpermute(
+             hidden=x,
+             handle=handle,
+             pad_multiple=pad_multiple,
+             num_dispatched_tokens=num_dispatched_tokens,
+         )
++        _hybridep_log_timing("HybridEP_combine_fwd", _start, _end)
++        if _hybridep_timers is not None:
++            _hybridep_timers(HYBRIDEP_TIMER_COMBINE_FWD, log_level=2).stop()
+         ctx.handle = handle
+         ctx.pad_multiple = pad_multiple
+         ctx.num_dispatched_tokens = num_dispatched_tokens
+@@ -435,6 +485,11 @@ class HybridEPCombine(torch.autograd.Function):
+         Backward pass of fused combine of the HybridEP backend
+         '''
+         handle = ctx.handle
++        if _hybridep_timers is not None:
++            _hybridep_timers(HYBRIDEP_TIMER_DISPATCH_BWD, log_level=2).start()
++        _start = torch.cuda.Event(enable_timing=True)
++        _end = torch.cuda.Event(enable_timing=True)
++        _start.record()
+         dispatched_hidden, _, _, _, _ = _hybrid_ep_buffer.dispatch_with_permute(
+             hidden=grad_x,
+             scaling_factor=None,
+@@ -443,6 +498,9 @@ class HybridEPCombine(torch.autograd.Function):
+             num_dispatched_tokens=ctx.num_dispatched_tokens,
+             num_permuted_tokens=ctx.num_permuted_tokens,
+         )
++        _hybridep_log_timing("HybridEP_dispatch_bwd", _start, _end)
++        if _hybridep_timers is not None:
++            _hybridep_timers(HYBRIDEP_TIMER_DISPATCH_BWD, log_level=2).stop()
+         return dispatched_hidden, None, None, None, None
+
+
+diff --git a/megatron/core/transformer/moe/token_dispatcher.py b/megatron/core/transformer/moe/token_dispatcher.py
+index c7c7ff147..44822d5d8 100644
+--- a/megatron/core/transformer/moe/token_dispatcher.py
++++ b/megatron/core/transformer/moe/token_dispatcher.py
+@@ -22,6 +22,7 @@ from megatron.core.transformer.moe.fused_a2a import (
+     hybrid_ep_combine,
+     hybrid_ep_dispatch,
+     set_deepep_num_sms,
++    set_hybridep_timers,
+ )
+ from megatron.core.transformer.moe.moe_utils import (
+     ProcessGroupCollection,
+@@ -49,6 +50,40 @@ from megatron.core.transformer.transformer_config import TransformerConfig
+ logger = logging.getLogger(__name__)
+
+
++def _log_hybridep_dispatch_token_counts(
++    routing_map: torch.Tensor,
++    group: torch.distributed.ProcessGroup,
++    num_local_experts: int,
++    num_experts: int,
++) -> None:
++    """统计并打印每次 dispatch 时从每个 rank 分到每个 rank 的 token 数量。routing_map 形状 [num_tokens, num_experts]，expert 按 rank 连续排列。"""
++    world_size = group.size()
++    rank_in_group = group.rank() if group is not None else 0
++    device = routing_map.device
++    # 本 rank 发往各 rank 的 token 数：rank r 拥有 expert 下标 [r*num_local_experts, (r+1)*num_local_experts)
++    send_counts = torch.zeros(world_size, dtype=torch.long, device=device)
++    for r in range(world_size):
++        start = r * num_local_experts
++        end = min((r + 1) * num_local_experts, num_experts)
++        if start < end:
++            send_counts[r] = (
++                routing_map[:, start:end].any(dim=1).sum(dtype=torch.long)
++            )
++    # all_gather 得到 [world_size, world_size]：行=src_rank，列=dst_rank
++    out_size = world_size * world_size
++    gathered = torch.zeros(out_size, dtype=torch.long, device=device)
++    torch.distributed.all_gather_into_tensor(
++        gathered, send_counts.contiguous(), group=group
++    )
++    matrix = gathered.view(world_size, world_size)
++    if rank_in_group == 0:
++        lines = ["[HybridEP dispatch] tokens sent: src_rank -> dst_rank (rows=src, cols=dst)"]
++        lines.append("     " + " ".join(f"r{k}" for k in range(world_size)))
++        for i in range(world_size):
++            lines.append("r{:2d}  {}".format(i, " ".join(str(matrix[i, j].item()) for j in range(world_size))))
++        logger.info("\n".join(lines))
++
++
+ class MoETokenDispatcher:
+     """
+     MoE Token Dispatcher
+@@ -996,6 +1031,8 @@ class _HybridEPManager(_DispatchManager):
+         async_finish: bool = True,
+         allocate_on_comm_stream: bool = True,
+     ) -> torch.Tensor:
++        if getattr(self.config, 'timers', None) is not None:
++            set_hybridep_timers(self.config.timers)
+         # HybridEP only supports float32 probs
+         if self.token_probs.dtype != torch.float32:
+             if self.token_probs.dtype in [torch.bfloat16, torch.float16]:
+@@ -1020,6 +1057,14 @@ class _HybridEPManager(_DispatchManager):
+             )
+         )
+
++        # 每次 dispatch 统计并打印：从每个 rank 分到每个 rank 的 token 数量
++        _log_hybridep_dispatch_token_counts(
++            self.routing_map,
++            self.group,
++            self.num_local_experts,
++            self.num_experts,
++        )
++
+         if not self.drop_and_pad:
+             self.tokens_per_expert = tokens_per_expert
+             # self.num_permuted_tokens is necessary to allocate the output tensor for permute
+@@ -1033,6 +1078,8 @@ class _HybridEPManager(_DispatchManager):
+         async_finish: bool = True,
+         allocate_on_comm_stream: bool = True,
+     ) -> torch.Tensor:
++        if getattr(self.config, 'timers', None) is not None:
++            set_hybridep_timers(self.config.timers)
+         hidden_states = hybrid_ep_combine(
+             x=hidden_states,
+             handle=self.handle,
+diff --git a/megatron/training/training.py b/megatron/training/training.py
+index 989b83500..d2dda3505 100644
+--- a/megatron/training/training.py
++++ b/megatron/training/training.py
+@@ -1552,6 +1552,11 @@ def training_log(
+             'backward-send-forward-recv',
+             'backward-send-backward-recv',
+             'forward-backward-send-forward-backward-recv',
++            # HybridEP dispatch/combine（等价于 all-to-all），timing-log-option=all 时打印各 rank
++            'HybridEP_dispatch_fwd',
++            'HybridEP_combine_fwd',
++            'HybridEP_combine_bwd',
++            'HybridEP_dispatch_bwd',
+         ])
+     # Add timers from RL loop if needed.
+     if getattr(args, 'perform_rl_step', False):

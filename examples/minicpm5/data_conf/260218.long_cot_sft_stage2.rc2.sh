@@ -1,0 +1,35 @@
+DATA_PATH="
+0.002596421 /user/zhangyixuan/share_user_data/user/fangyewei/datasets_sstable/sft_new_for_5/swe-smith-gpt-oss-120b/swe-smith-gpt-oss-120b
+0.017403579 /user/zhangyixuan/share_user_data/user/fangyewei/datasets_sstable/sft_new_for_5/swe-smith-qwen3-coder-30a3b/swe-smith-qwen3-coder-30a3b
+0.124478659 /user/zhangyixuan/share_user_data/user/fangyewei/datasets_sstable/sft_new_for_5/omr.r1_0528.0602/omr.r1_0528.0602
+0.057897051 /user/zhangyixuan/share_user_data/user/fangyewei/datasets_sstable/sft_new_for_5/omr.r1_0528.0606/omr.r1_0528.0606
+0.107109544 /user/zhangyixuan/share_user_data/user/fangyewei/datasets_sstable/sft_new_for_5/omr.r1_0528.0609/omr.r1_0528.0609
+0.000580289 /user/zhangyixuan/share_user_data/user/fangyewei/datasets_sstable/sft_new_for_5/math500.r1_0528.0609/math500.r1_0528.0609
+0.104452082 /user/zhangyixuan/share_user_data/user/fangyewei/datasets_sstable/sft_new_for_5/ocr2.r1_0528.0601/ocr2.r1_0528.0601
+0.104452082 /user/zhangyixuan/share_user_data/user/fangyewei/datasets_sstable/sft_new_for_5/ocr2.r1_0528.0606/ocr2.r1_0528.0606
+0.028486932 /user/zhangyixuan/share_user_data/user/fangyewei/datasets_sstable/sft_new_for_5/rl_hard.r1_0528.0603/rl_hard.r1_0528.0603
+0.132543362 /user/zhangyixuan/share_user_data/user/fangyewei/datasets_sstable/sft_new_for_5/general_reasoner.r1_0528.0609/general_reasoner.r1_0528.0609
+0.080000000 /user/zhangyixuan/share_user_data/user/fangyewei/datasets_sstable/sft_new_for_5/nvidia_Nemotron-Math-v2.high/nvidia_Nemotron-Math-v2.high
+0.003000000 /user/zhangyixuan/share_user_data/user/fangyewei/datasets_sstable/sft_new_for_5/code_tir/code_tir
+0.015944546 /user/zhangyixuan/share_user_data/user/fangyewei/datasets_sstable/sft_new_for_5/nvidia_nemotron_cascade_sft_stage-1_code/nvidia_nemotron_cascade_sft_stage-1_code
+0.014055454 /user/zhangyixuan/share_user_data/user/fangyewei/datasets_sstable/sft_new_for_5/nvidia_nemotron_cascade_sft_stage-2_code/nvidia_nemotron_cascade_sft_stage-2_code
+0.030000000 /user/zhangyixuan/share_user_data/user/fangyewei/datasets_sstable/sft_new_for_5/DeepSeek-R1-300w/DeepSeek-R1-300w
+0.020000000 /user/zhangyixuan/share_user_data/user/fangyewei/datasets_sstable/sft_new_for_5/simia90k_toolmind_spider_bird/simia90k_toolmind_spider_bird
+0.000493346 /user/zhangyixuan/share_user_data/user/fangyewei/datasets_sstable/sft_new_for_5/contextminer-cot/contextminer-cot
+0.000396723 /user/zhangyixuan/share_user_data/user/fangyewei/datasets_sstable/sft_new_for_5/deepdive-cot/deepdive-cot
+0.000221864 /user/zhangyixuan/share_user_data/user/fangyewei/datasets_sstable/sft_new_for_5/deepdive-cot2/deepdive-cot2
+0.000175777 /user/zhangyixuan/share_user_data/user/fangyewei/datasets_sstable/sft_new_for_5/keychain-cot/keychain-cot
+0.000145221 /user/zhangyixuan/share_user_data/user/fangyewei/datasets_sstable/sft_new_for_5/multiquery-cot/multiquery-cot
+0.000357113 /user/zhangyixuan/share_user_data/user/fangyewei/datasets_sstable/sft_new_for_5/searchagent-cot/searchagent-cot
+0.001837522 /user/zhangyixuan/share_user_data/user/fangyewei/datasets_sstable/sft_new_for_5/hotpotqa-cot/hotpotqa-cot
+0.000829995 /user/zhangyixuan/share_user_data/user/fangyewei/datasets_sstable/sft_new_for_5/qasper-cot/qasper-cot
+0.001034766 /user/zhangyixuan/share_user_data/user/fangyewei/datasets_sstable/sft_new_for_5/musique-cot/musique-cot
+0.005832644 /user/zhangyixuan/share_user_data/user/fangyewei/datasets_sstable/sft_new_for_5/longsft-v4-cot/longsft-v4-cot
+0.002451660 /user/zhangyixuan/share_user_data/user/fangyewei/datasets_sstable/sft_new_for_5/longsft-v5-cot/longsft-v5-cot
+0.023345897 /user/zhangyixuan/share_user_data/user/fangyewei/datasets_sstable/sft_new_for_5/longr4_novel_zh-cot/longr4_novel_zh-cot
+0.019538021 /user/zhangyixuan/share_user_data/user/fangyewei/datasets_sstable/sft_new_for_5/longr4_novel_en-cot/longr4_novel_en-cot
+0.002971814 /user/zhangyixuan/share_user_data/user/fangyewei/datasets_sstable/sft_new_for_5/longr4_zhiwangshuobo-cot/longr4_zhiwangshuobo-cot
+0.003107041 /user/zhangyixuan/share_user_data/user/fangyewei/datasets_sstable/sft_new_for_5/longr4_annas_qikan-cot/longr4_annas_qikan-cot
+0.004355725 /user/zhangyixuan/share_user_data/user/fangyewei/datasets_sstable/sft_new_for_5/finance_zh_cot/finance_zh_cot
+0.002880495 /user/zhangyixuan/share_user_data/user/fangyewei/datasets_sstable/sft_new_for_5/finance_en_cot/finance_en_cot
+"
