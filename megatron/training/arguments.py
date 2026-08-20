@@ -1322,8 +1322,8 @@ def core_transformer_config_from_args(args, config_class=None):
         # Pop 'rope_type' to let the config class use the default value.
         kw_args.pop('rope_type', None)
     else:
-        assert (args.multi_latent_attention or args.rope_type in ['rope', 'longrope']), (
-            f'Common attention only support rope_type="rope", but got {args.rope_type}.'
+        assert (args.multi_latent_attention or args.rope_type in ['rope', 'longrope', 'llama']), (
+            f'Common attention only support rope_type in [rope, longrope, llama], but got {args.rope_type}.'
         )
 
     if len(args.cp_comm_type) == 1:
@@ -2275,7 +2275,7 @@ def _add_training_args(parser):
                        'only when using megatron-core.',
                        dest='apply_rope_fusion')
     group.add_argument('--rope-type', type=str, default=None,
-                      choices=['rope', 'yarn', 'longrope'],
+                      choices=['rope', 'yarn', 'longrope', 'llama'],
                       help='Type of rope to use. Note that MLA takes yarn by default, '
                       'and common attention takes rope by default.')
     group.add_argument('--cross-entropy-loss-fusion', action='store_true',

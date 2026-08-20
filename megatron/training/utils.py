@@ -520,8 +520,8 @@ def get_batch_on_this_tp_rank(data_iterator):
         assert data_iterator is not None
         drop_stats = None
 
+        data = next(data_iterator)
         if args.use_modelbest_sdk:
-            data = next(data_iterator)
             while (data['loss_mask'] == 0).all().item():
                 data = next(data_iterator)
             data_iterator.update(data['indexes'], data['last_sample'])
@@ -554,8 +554,6 @@ def get_batch_on_this_tp_rank(data_iterator):
 
         if args.log_task_loss_interval != -1:
             batch['dataset_id'] = data["dataset_id"].to(torch.int64).cuda(non_blocking = True)
-        else:
-            batch['dataset_id'] = None
 
         if args.pipeline_model_parallel_size == 1:
             _broadcast(batch['tokens'])
@@ -692,8 +690,6 @@ def get_batch_on_this_tp_rank(data_iterator):
         }
         if args.log_task_loss_interval != -1:
             batch['dataset_id'] = dataset_id
-        else:
-            batch['dataset_id'] = None
 
     if metadata_enabled and (args.pipeline_model_parallel_size == 1 or mpu.is_pipeline_last_stage()):
         args.current_num_real_seqs = num_real_seqs
